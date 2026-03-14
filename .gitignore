@@ -1,0 +1,140 @@
+# ── Environment Variables & Secrets ────────────────────────────────
+.env
+.env.*
+!.env.example
+*.env
+backend/.env
+backend/.env.*
+web/.env
+web/.env.*
+web/.env.local
+web/.env.development.local
+web/.env.test.local
+web/.env.production.local
+mobile/.env
+mobile/.env.*
+
+# ── Node.js ───────────────────────────────────────────────────────
+# Ignore node_modules in all directories (root, web, backend, mobile)
+node_modules/
+**/node_modules/
+web/node_modules/
+backend/node_modules/
+mobile/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ── Build Outputs ─────────────────────────────────────────────────
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+*.js.map
+*.d.ts.map
+
+# ── TypeScript ────────────────────────────────────────────────────
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# ── IDE & Editor Files ────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# ── OS Files ─────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Logs ─────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ── Database ─────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+postgres_data/
+*.dump
+
+# ── Docker ───────────────────────────────────────────────────────
+.dockerignore
+docker-compose.override.yml
+
+# ── Testing ──────────────────────────────────────────────────────
+coverage/
+.nyc_output/
+*.lcov
+.jest/
+
+# ── Temporary Files ──────────────────────────────────────────────
+tmp/
+temp/
+*.tmp
+*.temp
+.cache/
+
+# ── Expo (Mobile) ────────────────────────────────────────────────
+.expo/
+.expo-shared/
+web-build/
+.expo/
+dist/
+
+# ── Next.js ──────────────────────────────────────────────────────
+.next/
+out/
+.vercel
+
+# ── Stripe ──────────────────────────────────────────────────────
+stripe-secret-key.txt
+stripe-keys.txt
+*.pem
+
+# ── API Keys & Credentials ───────────────────────────────────────
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.json
+service-account.json
+secrets.json
+
+# ── Redis ────────────────────────────────────────────────────────
+dump.rdb
+*.rdb
+
+# ── Misc ────────────────────────────────────────────────────────
+*.pid
+*.seed
+*.pid.lock
+.npm
+.eslintcache
+.stylelintcache
+temp_auto_push.bat
+temp_interactive_push.bat
+branch_structure.json
