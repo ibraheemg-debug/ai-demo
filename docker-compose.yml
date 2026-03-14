@@ -1,0 +1,85 @@
+version: "3.9"
+
+networks:
+  ai-platform-net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+
+services:
+  # ── PostgreSQL ───────────────────────────────────────────────
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    # Load creds directly from backend/.env (POSTGRES_USER / PASSWORD / DB)
+    env_file:
+      - ./backend/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ai-platform-net
+    healthcheck:
+      # Use $$ so Docker Compose does NOT substitute — the shell inside the
+      # container resolves $$POSTGRES_USER at runtime from the container env.
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── Redis ────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    networks:
+      - ai-platform-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # ── Express API ──────────────────────────────────────────────
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./backend/.env
+    environment:
+      # Override localhost URLs with Docker service names
+      DATABASE_URL: postgresql://aidemo:aidemo_secret@postgres:5432/aidemo_db
+      REDIS_URL:    redis://redis:6379
+      PORT:         4000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - ai-platform-net
+
+  # ── Next.js Web ──────────────────────────────────────────────
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    environment:
+      # Override PORT from backend/.env (backend uses 4000, web needs 3000)
+      PORT: 3000
+      # Public URLs reachable from the browser (host machine)
+      NEXT_PUBLIC_API_URL:    http://localhost:4000
+      NEXT_PUBLIC_SOCKET_URL: http://localhost:4000
+    depends_on:
+      - api
+      - postgres
+    networks:
+      - ai-platform-net
