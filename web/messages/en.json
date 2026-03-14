@@ -1,0 +1,29 @@
+{
+  "dashboard": {
+    "title": "AI Platform Dashboard",
+    "subtitle": "Real-time platform monitoring and analytics",
+    "requests": "Total Requests",
+    "tokens": "Tokens Used",
+    "connections": "Active Connections",
+    "lastUpdated": "Last Updated"
+  },
+  "billing": {
+    "title": "Billing & Sessions",
+    "startSession": "Start Session",
+    "endSession": "End Session",
+    "running": "Session Active",
+    "cost": "Cost",
+    "paymentId": "Payment ID"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "billing": "Billing",
+    "language": "Language"
+  },
+  "errors": {
+    "wsDisconnected": "Live updates paused — retrying...",
+    "wsReconnected": "Live updates restored",
+    "apiFailure": "Failed to load data. Please try again.",
+    "paymentFailed": "Payment processing failed"
+  }
+}

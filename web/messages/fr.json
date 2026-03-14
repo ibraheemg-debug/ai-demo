@@ -1,0 +1,29 @@
+{
+  "dashboard": {
+    "title": "Tableau de Bord de la Plateforme IA",
+    "subtitle": "Surveillance et analytique de la plateforme en temps réel",
+    "requests": "Requêtes Totales",
+    "tokens": "Tokens Utilisés",
+    "connections": "Connexions Actives",
+    "lastUpdated": "Dernière Mise à Jour"
+  },
+  "billing": {
+    "title": "Facturation et Sessions",
+    "startSession": "Démarrer la Session",
+    "endSession": "Terminer la Session",
+    "running": "Session Active",
+    "cost": "Coût",
+    "paymentId": "Identifiant de Paiement"
+  },
+  "nav": {
+    "dashboard": "Tableau de Bord",
+    "billing": "Facturation",
+    "language": "Langue"
+  },
+  "errors": {
+    "wsDisconnected": "Mises à jour en direct interrompues — nouvelle tentative...",
+    "wsReconnected": "Mises à jour en direct rétablies",
+    "apiFailure": "Impossible de charger les données. Veuillez réessayer.",
+    "paymentFailed": "Le traitement du paiement a échoué"
+  }
+}
